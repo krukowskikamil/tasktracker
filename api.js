@@ -5,9 +5,10 @@ const { customAlphabet } = require("nanoid")
 
 const app = express()
 const nanoid = customAlphabet('1234567890', 9)
+const port = process.env.port || 3333
 
 app.use(bodyParser.json())
-app.listen(3333, () => {
+app.listen(port, () => {
     console.log("Server listening at port 3333")
 })
 
@@ -35,7 +36,7 @@ app.post("/task", (req, res) => {
     
         client.query(insertQuery, (err,result) => {
             if(!err){
-                res.send("Task added succesfully").status(201)
+                res.send("Task added succesfully")
                 
             }else{
                 console.log(`Error while adding new task: ${err}`)
